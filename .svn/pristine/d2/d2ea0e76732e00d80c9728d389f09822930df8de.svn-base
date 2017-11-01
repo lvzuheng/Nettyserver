@@ -1,0 +1,28 @@
+package net.easyits.tcp.base;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import io.netty.channel.Channel;
+
+public class BufferManager {
+
+	private static Map<Channel, byte[]> bufferMap = new HashMap<>();
+
+	public static void put(Channel channel,byte[] b){
+		bufferMap.put(channel, b);
+	}
+	
+	public static byte[] get(Channel channel){
+		return bufferMap.get(channel);
+	}
+	
+	public static void remove(Channel channel) {
+		bufferMap.remove(channel);
+	}
+	
+	public static boolean isExist(Channel channel){
+		return bufferMap.containsKey(channel);
+	}
+	
+}

@@ -1,0 +1,38 @@
+package net.easyits.tcp.base;
+
+import java.io.UnsupportedEncodingException;
+
+import com.alibaba.fastjson.JSONObject;
+
+
+
+
+public class HeartBeat {
+	
+	public String getJsonString(){
+		JSONObject js = new JSONObject();
+		js.put("header", null);
+		js.put("body", null);
+		String json = js.toJSONString()+"\r\n";
+		return json;
+	}
+	
+	public byte[] getJsonByte(){
+		JSONObject js = new JSONObject();
+		js.put("header", null);
+		js.put("body", null);
+//		logger.info("发送信息为："+js.toJSONString());
+		byte b1[] = null;
+		byte b3[] = null;
+		try {
+			b1 = js.toJSONString().getBytes("utf-8");
+			byte b2[] = "\r\n".getBytes();
+			b3 = new byte[b1.length+b2.length];
+			System.arraycopy(b1, 0, b3, 0, b1.length);  
+	        System.arraycopy(b2, 0, b3, b1.length, b2.length);  
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return b3;
+	}
+}

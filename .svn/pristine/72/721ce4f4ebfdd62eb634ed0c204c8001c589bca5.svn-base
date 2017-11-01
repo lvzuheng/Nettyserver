@@ -1,0 +1,5 @@
+package net.easyits.tcp.decoder;
+
+public class MessageDecoder {
+	
+}

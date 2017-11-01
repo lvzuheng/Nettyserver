@@ -1,0 +1,82 @@
+package com.lzh.net.utils;
+
+
+import java.util.HashMap;
+import java.util.Map;
+
+import io.netty.channel.Channel;
+
+public class ConnectionView {
+	private Channel channel;
+	private String address;
+    private Map<String, Object> map= new HashMap<String, Object>();;//存储会话id
+
+	public ConnectionView(Channel channel) {
+		// TODO Auto-generated constructor stub
+		this.channel = channel;
+	}
+	
+    public void send(Object msg) {
+    channel.writeAndFlush(msg);
+    }
+    
+    public void send(byte[] bytes) {
+        //ByteBuffer buf = ByteBuffer.wrap(bytes);
+        channel.writeAndFlush(bytes);
+        bytes = null;
+    }
+	
+	
+	public Channel getChannel() {
+		return channel;
+	}
+
+	public void setChannel(Channel channel) {
+		this.channel = channel;
+	}
+
+
+	public String getAddress() {
+		return channel.remoteAddress().toString();
+	}
+
+	
+	public void close() {
+		channel.close();
+	}
+	
+	
+	public void put(String key ,Object value) {
+		map.put(key, value);
+	}
+		
+
+	public int get(String key, int defaultValue) {
+	    	if(map == null){
+	    		map = new HashMap<String, Object>();
+	    	}
+	        synchronized (map) {
+	            Object obj = map.get(key);
+	            if (obj == null) {
+	                return defaultValue;
+	            }
+	            return (int) obj;
+	        }
+	    }
+
+	 public Object getObject(String key) {
+	        synchronized (map) {
+	            return map.get(key);
+	        }
+	    }
+
+	    public String getString(String key) {
+	    	if(map == null){
+	    		map = new HashMap<String, Object>();
+	    	}
+	        synchronized (map) {
+	            return (String) map.get(key);
+	        }
+	    }
+	
+}

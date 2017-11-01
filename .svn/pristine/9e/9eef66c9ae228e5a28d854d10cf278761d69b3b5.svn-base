@@ -1,0 +1,28 @@
+package net.easyits.tcp.decoder;
+
+import net.easyits.tcp.manager.ConnectionView;
+
+public  class BaseDecoder {
+	/*
+	protected ConnectionView connection;
+	public BaseDecoder(){
+		
+	}
+	public BaseDecoder(IoSession session){
+		connection = new ConnectionView(session);
+	}
+	public ConnectionView getConnection() {
+		return connection;
+	}
+
+	public void setConnection(ConnectionView connection) {
+		this.connection = connection;
+	}*/
+	private Boolean UTF;
+	public void decode(String message,ConnectionView connectionView){
+
+	}
+	public byte[] decode(byte[] message,ConnectionView connectionView){
+		return null;
+	}
+}

@@ -1,0 +1,22 @@
+package net.easyits.tcp.decoder;
+
+import net.easyits.tcp.manager.ConnectionView;
+
+/**
+ * @description:字节协议解析器，其他解析器的基类，这里可提供协议解析器的默认实现
+ * @date: 2009-3-10
+ * @author Peter
+ */
+public class ByteDecoder extends BaseDecoder{
+	
+	/**
+	 * 解析字节消息
+	 * @param buf 
+	 * @return
+	 */
+	public byte[] decode(byte[] buf,ConnectionView connectionView){
+		//TODO 默认实现
+		return null;
+	}
+	 
+}
